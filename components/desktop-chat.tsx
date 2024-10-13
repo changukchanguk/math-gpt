@@ -5,6 +5,9 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { ImageIcon, Send } from "lucide-react"
 import Image from "next/image"
+import { MathJax, MathJaxContext } from "better-react-mathjax";
+
+
 type Message = {
   id: number
   text: string
@@ -100,7 +103,11 @@ export default function DesktopChat() {
 
   return (
     <div className="h-screen">
-      <div className="w-full px-4 h-full mx-auto py-20 flex flex-col">
+      <div className="w-full px-4 h-full mx-auto flex flex-col pb-10">
+      <div className="flex justify-center pt-5 mb-5">
+        <h1 className="text-lg font-bold mb-6">홍PT와 대화하기</h1>
+      </div>
+        <MathJaxContext>
           {messages.length > 0 ? (
         <ScrollArea className="flex-grow pr-4">
             <div className="space-y-4 py-10">
@@ -128,8 +135,10 @@ export default function DesktopChat() {
                           : "bg-gray-200 text-gray-900"
                       }`}
                     >
-                      {message.text && message.text.split('\n').map((line, index) => (
-                        <p key={index} className="mb-2">{line}</p>
+                      {message.text && message.text.split(/(?<!\\)\n(?![^\[]*\])/).map((line, index) => (
+                      <MathJax key={index}>
+                        <p className="mb-2">{line}</p>
+                      </MathJax>
                       ))}
                       {message.image && (
                         <Image
@@ -149,7 +158,14 @@ export default function DesktopChat() {
           </ScrollArea>
           ) : (
             <div className="flex-grow flex flex-col items-center justify-center min-h-screenp-4">
-              <h1 className="text-2xl font-bold mb-6">무엇을 도와드릴까요? 😊</h1>
+              <h1 className="text-lg font-bold mb-2 text-center">수학을 잘하려면</h1>
+              <h1 className="text-lg font-bold mb-2 text-center">수학적 개념을 직접 설명하는 과정이 매우 중요합니다! 💯</h1>
+              <h1 className="text-lg font-bold mb-2 text-center">자신이 푼 수학문제를 홍PT에게 설명해보세요!! 💁🏻‍♂️</h1>
+              <h1 className="text-lg font-bold mb-2 text-center">설명에 부족한 부분이 있으면</h1>
+              <h1 className="text-lg font-bold mb-2 text-center">홍PT가 여러분에게 힌트를 제공하고</h1>
+              <h1 className="text-lg font-bold mb-2 text-center">질문을 던지며</h1>
+              <h1 className="text-lg font-bold mb-2 text-center">완벽한 설명을 완성할 수 있도록 도와드립니다.</h1>
+              <h1 className="text-lg font-bold mb-2 text-center">24시간 여러분 곁을 지키는 과외선생님 홍PT에요!!! 👨🏻‍🏫</h1>
             </div>
           )}
         <form onSubmit={handleSendMessage} className="w-full">
@@ -194,7 +210,8 @@ export default function DesktopChat() {
               <Send className="h-6 w-6" />
             </button>
           </div>
-      </form>
+          </form>
+          </MathJaxContext>
       </div>
     </div>
   )
