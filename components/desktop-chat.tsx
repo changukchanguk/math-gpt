@@ -105,7 +105,7 @@ export default function DesktopChat() {
     <div className="h-screen">
       <div className="w-full px-4 h-full mx-auto flex flex-col pb-10">
       <div className="flex justify-center pt-5 mb-5">
-        <h1 className="text-lg font-bold mb-6">홍PT와 대화하기</h1>
+        <h1 className="text-lg font-bold mb-6">듣는 선생님 홍PT</h1>
       </div>
         <MathJaxContext>
           {messages.length > 0 ? (
