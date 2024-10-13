@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { ImageIcon, Send } from "lucide-react"
 import Image from "next/image"
-import { MathJax, MathJaxContext } from "better-react-mathjax";
+import { MathJaxContext, MathJax } from "better-react-mathjax";
 
 
 type Message = {
@@ -22,6 +22,7 @@ export default function DesktopChat() {
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [threadId, setThreadId] = useState<string | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -136,7 +137,7 @@ export default function DesktopChat() {
                       }`}
                     >
                       {message.text && message.text.split(/(?<!\\)\n(?![^\[]*\])/).map((line, index) => (
-                      <MathJax key={index}>
+                      <MathJax key={index} dynamic>
                         <p className="mb-2">{line}</p>
                       </MathJax>
                       ))}
