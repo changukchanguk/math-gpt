@@ -100,7 +100,7 @@ export default function DesktopChat() {
 
   return (
     <div className="h-screen">
-      <div className="w-3/5 h-full mx-auto py-20 flex flex-col">
+      <div className="w-full px-4 h-full mx-auto py-20 flex flex-col">
           {messages.length > 0 ? (
         <ScrollArea className="flex-grow pr-4">
             <div className="space-y-4 py-10">
@@ -128,7 +128,9 @@ export default function DesktopChat() {
                           : "bg-gray-200 text-gray-900"
                       }`}
                     >
-                      {message.text && <p>{message.text}</p>}
+                      {message.text && message.text.split('\n').map((line, index) => (
+                        <p key={index} className="mb-2">{line}</p>
+                      ))}
                       {message.image && (
                         <Image
                           src={message.image}
