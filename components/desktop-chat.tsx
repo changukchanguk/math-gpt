@@ -33,6 +33,7 @@ export default function DesktopChat() {
       setMessages([...messages, newMessage]);
       setInputText("");
       setImageFile(null);
+      setImagePreview(null);
   
       // 응답 자리 확보
       const otherMessage: Message = {
