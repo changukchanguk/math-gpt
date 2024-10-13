@@ -51,7 +51,7 @@ export default function DesktopChat() {
           formData.append("image", imageFile);
         }
   
-        const response = await fetch("http://43.201.6.239:8000/ask", {
+        const response = await fetch("https://43.201.6.239.nip.io/ask", {
           method: "POST",
           body: formData,
         });
