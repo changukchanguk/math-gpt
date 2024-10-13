@@ -137,7 +137,7 @@ export default function DesktopChat() {
                     >
                       {message.text && message.text.split(/(?<!\\)\n(?![^\[]*\])/).map((line, index) => (
                       <MathJax key={index}>
-                        <p className="mb-2">{`\\(${line}\\)`}</p>
+                        <p className="mb-2">{line}</p>
                       </MathJax>
                       ))}
                       {message.image && (
